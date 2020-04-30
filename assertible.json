@@ -1,0 +1,78 @@
+{
+    "components" : {
+        "schemas" : {
+            "UUID" : {
+                "type": "string",
+                "maxLength" : 36,
+                "minLength" : 36,
+                "pattern" : "^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$",
+                "example" : "bc98c020-09df-4d60-904a-2fb5cbb637ea",
+                "additionalProperties": false
+            },
+            "EmptyString" : {
+                "type": "string",
+                "maxLength" : 0,
+                "minLength": 0,
+                "pattern": "^$",
+                "additionalProperties": false
+            },
+            "UUIDOrEmpty" : {
+                "properties": {
+                    "id": {
+                        "oneOf": [
+                            {
+                                "$ref" : "#/components/schemas/UUID"
+                            },
+                            {
+                                "$ref" : "#/components/schemas/EmptyString"
+                            }
+                        ],
+                        "additionalProperties": false
+                    }
+                },
+                "example": {
+                    "id": ""
+                }
+            }
+        }
+    },
+    "info" : {
+        "description" : "Test the `oneOf` on Assertible",
+        "title" : "Assertible Test",
+        "version" : "0.0.1"
+    },
+    "openapi" : "3.0.0",
+    "paths" : {
+        "/ids" : {
+            "get" : {
+                "deprecated" : false,
+                "parameters" : [
+                ],
+                "responses" : {
+                   "200" : {
+                        "content" : {
+                            "application/json" : {
+                                "schema" : {
+                                    "items": {
+                                        "$ref" : "#/components/schemas/UUIDOrEmpty"
+                                    },
+                                    "maxItems": 100,
+                                    "minItems": 1
+                                }
+                            }
+                        },
+                        "description" : "UUID IDs"
+                    }
+                },
+                "security" : [],
+                "summary" : "Get some IDs"
+            }
+        }
+    },
+    "servers" : [
+        {
+            "description" : "Get some UUID or empty string",
+            "url" : "https://my-json-server.typicode.com/mbarnach/assertible_test"
+        }
+    ]
+}
