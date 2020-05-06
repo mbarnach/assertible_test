@@ -1,0 +1,18 @@
+on: [push]
+
+jobs:
+  run_tests:
+    runs-on: ubuntu-latest
+    name: Run the tests on Assertible
+    steps:
+      - name: Trigger the tests
+        id: tests
+        uses: mbarnach/assertible-run-tests-action@v1
+        with:
+          APIToken: ${{ secrets.APITOKEN }}
+          ServiceID: ${{ secrets.ServiceID }}
+          Environment: ${{ secrets.Environment }}
+          EnvironmentURL: ''
+          Version: ${{ secrets.Version }}
+      - name: Get the session ID
+        run: echo "The ID is ${{ steps.tests.json }}
