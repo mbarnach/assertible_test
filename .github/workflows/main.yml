@@ -9,7 +9,7 @@ jobs:
         uses: actions/checkout@v2
       - name: Trigger the tests
         id: tests
-        uses: mbarnach/assertible-run-tests-action@v4
+        uses: mbarnach/assertible-run-tests-action@master
         with:
           APIToken: ${{ secrets.APITOKEN }}
           ServiceID: ${{ secrets.ServiceID }}
