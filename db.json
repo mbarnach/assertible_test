@@ -9,5 +9,8 @@
         {
             "id": "806E80F7-4C4C-44EA-9F0D-E6CE1F0A5DD7"
         }
-    ]
+    ],
+    "auth": {
+        "token": "706B2400-7B28-4DD1-B071-1BCC6EA743CB"
+    }
 }
