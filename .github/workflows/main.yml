@@ -7,7 +7,7 @@ jobs:
     steps:
       - name: Trigger the tests
         id: tests
-        uses: mbarnach/assertible-run-tests-action@v2
+        uses: mbarnach/assertible-run-tests-action@v3
         with:
           APIToken: ${{ secrets.APITOKEN }}
           ServiceID: ${{ secrets.ServiceID }}
