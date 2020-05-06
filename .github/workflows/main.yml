@@ -5,9 +5,11 @@ jobs:
     runs-on: ubuntu-latest
     name: Run the tests on Assertible
     steps:
+      - name: Get the code to test
+        uses: actions/checkout@v2
       - name: Trigger the tests
         id: tests
-        uses: mbarnach/assertible-run-tests-action@v3
+        uses: mbarnach/assertible-run-tests-action@v4
         with:
           APIToken: ${{ secrets.APITOKEN }}
           ServiceID: ${{ secrets.ServiceID }}
