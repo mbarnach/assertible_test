@@ -1,4 +1,7 @@
 # Assertible test
+
+![Assertible tests](https://github.com/mbarnach/assertible_test/workflows/.github/workflows/main.yml/badge.svg)
+
 This repository is used to test the `oneOf` feature on the [Assertible](https://assertible.com/) service.
 The `db.json` file is a DB for [My JSON Server](https://my-json-server.typicode.com/) which creates automatically the endpoint `https://my-json-server.typicode.com/mbarnach/assertible_test/ids`.
 The endpoints return the content of the `db.json` file for the entry ids:
