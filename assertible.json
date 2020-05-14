@@ -6,7 +6,7 @@
                 "maxLength" : 36,
                 "minLength" : 36,
                 "pattern" : "^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$",
-                "example" : "bc98c020-09df-4d60-904a-2fb5cbb637ea",
+                "example" : "bc98c020-09df-4d60-904a-2fb5cbb637eb",
                 "additionalProperties": false
             },
             "EmptyString" : {
@@ -32,6 +32,25 @@
                 },
                 "example": {
                     "id": ""
+                }
+            },
+            "token" : {
+                "properties" : {
+                    "token": {
+                        "$ref" : "#/components/schemas/UUID"
+                    }
+                }
+            }
+        },
+        "securitySchemes" : {
+            "FakeOAuth2" : {
+                "type": "oauth2",
+                "description": "Fake OAuth2 with JWT.",
+                "flows": {
+                    "implicit": {
+                        "authorizationUrl": "/auth",
+                        "scopes": {}
+                    }
                 }
             }
         }
@@ -64,15 +83,68 @@
                         "description" : "UUID IDs"
                     }
                 },
-                "security" : [],
                 "summary" : "Get some IDs"
+            }
+        },
+        "/ids/{id}" : {
+            "get" : {
+                "deprecated" : false,
+                "parameters" : [
+                    {
+                        "schema": {
+                            "$ref": "#/components/schemas/UUID"
+                        },
+                        "description": "The ID of the UUID to retrieve",
+                        "in": "path",
+                        "name": "id",
+                        "required": true
+                    }
+                ],
+                "responses" : {
+                   "200" : {
+                        "content" : {
+                            "application/json" : {
+                                "schema" : {
+                                    "$ref" : "#/components/schemas/UUIDOrEmpty"
+                                }
+                            }
+                        },
+                        "description" : "UUID ID"
+                    }
+                },
+                "summary" : "Get an ID"
+            }
+        },
+        "/auth" : {
+            "get" : {
+                "deprecated" : false,
+                "parameters" : [],
+                "responses" : {
+                    "200" : {
+                        "content" : {
+                            "application/json" : {
+                                "schema" : {
+                                    "$ref" : "#/components/schemas/token"
+                                }
+                            }
+                        },
+                        "description" : "Get a token"
+                    }
+                },
+                "security" : [],
+                "summary" : "Authentication endpoint"
             }
         }
     },
     "servers" : [
         {
             "description" : "Get some UUID or empty string",
-            "url" : "https://my-json-server.typicode.com/mbarnach/assertible_test"
+            "url" : "https://my-json-server.typicode.com/mbarnach/assertible_test/"
+        }
+    ],
+    "security" : [
+        {
+            "FakeOAuth2" : []
         }
     ]
 }
