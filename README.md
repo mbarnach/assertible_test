@@ -20,3 +20,7 @@ The endpoints return the content of the `db.json` file for the entry ids:
 ```
 
 With the OpenAPI schema `assertible.json`, a web service can be created on Assertible, and a single test is made to evaluate the `oneOf` feature of the schema validator.
+
+The OpenAPI schema has extended to test:
+- the security scheme
+- the default parameter for a query
